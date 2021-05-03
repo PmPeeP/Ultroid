@@ -253,7 +253,7 @@ export const leaveVc = (chatId: number) => {
         try {
             stream.emit('leave');
         } catch (error) {
-            console.log(error.toString);
+            console.log(error.toString());
             stream.emit('leave');
         }
         process.exit(0);
