@@ -8,7 +8,7 @@
 **/
 
 import { Composer } from 'telegraf';
-import { getQueue, leaveVc, getCurrentSong } from '../tgcalls';
+import { getQueue, leaveVc, getCurrentSong, closeConnection } from '../tgcalls';
 import escapeHtml from '@youtwitface/escape-html';
 import { getDuration } from '../utils';
 
@@ -32,6 +32,7 @@ export const queueHandler = Composer.command('queue', async ctx => {
 
     const song = getCurrentSong(chat.id);
     if (song === null && queue?.length == 0) {
-        leaveVc(chat.id)   
+        closeConnection();
+        leaveVc(chat.id);
     }
 });

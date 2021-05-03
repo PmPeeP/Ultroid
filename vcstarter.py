@@ -101,7 +101,7 @@ if vcbot is not None:
             },
         }
 
-    async def leave_vc(data):
+    async def leave_call(data):
         try:
             full_chat = await vcbot(
                 GetFullChannelRequest(
@@ -152,9 +152,6 @@ if vcbot is not None:
                     response = await join_call(data["data"])
 
                 if data["_"] == "leave":
-                    print(
-                        f"Received **Leave Request** In `{data['data']['chat']['title']}`"
-                    )
                     await bot.send_message(
                         Var.LOG_CHANNEL,
                         f"Received **Leave Request** In `{data['data']['chat']['title']}`",
@@ -163,7 +160,7 @@ if vcbot is not None:
                         data["data"]["chat"]["id"],
                         f"Received **Leave Request** In `{data['data']['chat']['title']}`",
                     )
-                    response = await leave_vc(data["data"])
+                    response = await leave_call(data["data"])
 
                 if response is not None:
                     await ws.send_json(response)

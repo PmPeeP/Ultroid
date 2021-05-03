@@ -23,8 +23,9 @@ export const exitVcHandler = Composer.action('exitVc', async ctx => {
         return false;
     }
 
-    await ctx.answerCbQuery("Leaving Voicechat");
+    closeConnection();
     leaveVc(chat.id);
+    await ctx.answerCbQuery("Leaving Voicechat");
 })
 
 export const exitCommand = Composer.command('exitVc', async ctx => {
@@ -34,7 +35,7 @@ export const exitCommand = Composer.command('exitVc', async ctx => {
         return;
     }
 
-    // leaveVc(chat.id);
     closeConnection();
+    leaveVc(chat.id);
     await ctx.reply("Left Voice Chat.");
 })
