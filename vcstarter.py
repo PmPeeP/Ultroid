@@ -30,9 +30,9 @@ if vcbot is not None:
         try:
             chat = await get_entity(data["chat"])
         except ValueError:
-            stree = (await vcbot.get_me()).first_name
+            name = (await vcbot.get_me()).first_name
             return await bot.send_message(
-                data["chat"]["id"], f"`Please add {stree} in this group.`"
+                data["chat"]["id"], f"Please add `{name}`` in this group."
             )
         except Exception as ex:
             return await bot.send_message(data["chat"]["id"], "`" + str(ex) + "`")
