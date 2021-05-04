@@ -56,7 +56,10 @@ async def _(e):
         k = k.split(" ")
         o = ""
         for x in k:
-            title = (await ultroid_bot.get_entity(int(x))).title
+            try:
+                title = (await ultroid_bot.get_entity(int(x))).title
+            except BaseException:
+                title = "`Invalid ID`"
             o += x + " " + title + "\n"
         await eor(e, o)
     else:
