@@ -34,11 +34,15 @@ async def mi(e):
         filename = r.file.name
         if not filename:
             if "audio" in mime_type:
-                    filename = "audio_" + dt.now().isoformat("_", "seconds") + ".ogg"
+                filename = "audio_" + dt.now().isoformat("_", "seconds") + ".ogg"
             elif "video" in mime_type:
-                    filename = "video_" + dt.now().isoformat("_", "seconds") + ".mp4"
+                filename = "video_" + dt.now().isoformat("_", "seconds") + ".mp4"
         dl = await downloader(
-           "resources/downloads/" + filename, file, ee, taime, f"`**[{xx}]({url})**\n\n`Loading More..."
+            "resources/downloads/" + filename,
+            file,
+            ee,
+            taime,
+            f"`**[{xx}]({url})**\n\n`Loading More...",
         )
     else:
         dl.name = await ultroid_bot.download_media(r.media)
@@ -50,5 +54,6 @@ async def mi(e):
         f"**[{xx}]({url})**\n\n[More Explained Info]({urll})", link_preview=False
     )
     os.remove(dl.name)
+
 
 HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=HNDLR)}"})
