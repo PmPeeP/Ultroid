@@ -89,9 +89,9 @@ async def changes(okk):
         file.write(tldr_str)
         file.close()
         await okk.edit(
-            get_string("upd_5").format(hndlr),
+            get_string("upd_5"),
             file="ultroid_updates.txt",
-            buttons=Button.inline("Update Now ?", data="updatenow"),
+            buttons=Button.inline("Update Now", data="updatenow"),
         )
         remove(f"ultroid_updates.txt")
         return
