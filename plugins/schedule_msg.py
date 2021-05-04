@@ -14,8 +14,10 @@
     eg. `{i}schedule Hello 1h` It deliver msg after an hour.
 """
 
-from . import *
 from datetime import timedelta
+
+from . import *
+
 
 @ultroid_cmd(pattern="schedule ?(.*)")
 async def _(e):
@@ -25,7 +27,9 @@ async def _(e):
         y = x.split(" ")[-1]
         k = x.replace(y, "")
         if y.isdigit():
-            await e.client.send_message(e.chat_id, k, schedule=timedelta(seconds=int(y)))
+            await e.client.send_message(
+                e.chat_id, k, schedule=timedelta(seconds=int(y))
+            )
         else:
             try:
                 z = await ban_time(e, y)
@@ -34,7 +38,9 @@ async def _(e):
                 await eod(e, "`Incorrect Format`")
     elif xx and x:
         if x.isdigit():
-            await e.client.send_message(e.chat_id, xx, schedule=timedelta(seconds=int(x)))
+            await e.client.send_message(
+                e.chat_id, xx, schedule=timedelta(seconds=int(x))
+            )
         else:
             try:
                 z = await ban_time(e, x)
