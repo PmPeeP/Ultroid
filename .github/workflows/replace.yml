@@ -22,7 +22,7 @@ jobs:
           find: "Var.BOT_USERNAME"
 
           replace: "asst.me.username"
-
+          exclude: "./.github/*.yml"
       - name: Create Pull Request
 
         uses: stefanzweifel/git-auto-commit-action@v4
