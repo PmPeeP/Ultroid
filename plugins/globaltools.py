@@ -147,6 +147,8 @@ async def _(e):
     pattern="gcast ?(.*)",
 )
 async def gcast(event):
+    if not event.out and not is_fullsudo(event.sender_id):
+        return await eor(event, "`This Command Is Sudo Restricted.`")
     xx = event.pattern_match.group(1)
     if not xx:
         return eor(event, "`Give some text to Globally Broadcast`")
@@ -170,6 +172,8 @@ async def gcast(event):
     pattern="gucast ?(.*)",
 )
 async def gucast(event):
+    if not event.out and not is_fullsudo(event.sender_id):
+        return await eor(event, "`This Command Is Sudo Restricted.`")
     xx = event.pattern_match.group(1)
     if not xx:
         return eor(event, "`Give some text to Globally Broadcast`")
