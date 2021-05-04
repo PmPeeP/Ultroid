@@ -31,7 +31,7 @@ async def _(e):
             link_preview=False,
         )
 
-
+@owner
 @callback("updtavail")
 async def updava(event):
     await event.delete()
