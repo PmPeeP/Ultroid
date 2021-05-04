@@ -28,17 +28,27 @@ async def mi(e):
     url = make_html_telegraph("Mediainfo", "Ultroid", f"<code>{murl}</code>")
     ee = await eor(e, f"**[{xx}]({url})**\n\n`Loading More...`", link_preview=False)
     taime = time.time()
-    dl = await downloader(
-        r.file.name, r.media.document, ee, taime, "Getting Media info..."
-    )
+    if hasattr(r.media, "document"):
+        file = r.media.document
+        mime_type = file.mime_type
+        filename = r.file.name
+        if not filename:
+            if "audio" in mime_type:
+                    filename = "audio_" + dt.now().isoformat("_", "seconds") + ".ogg"
+            elif "video" in mime_type:
+                    filename = "video_" + dt.now().isoformat("_", "seconds") + ".mp4"
+        dl = await downloader(
+           "resources/downloads/" + filename, file, ee, taime, f"`**[{xx}]({url})**\n\n`Loading More..."
+        )
+    else:
+        dl.name = await ultroid_bot.download_media(r.media)
     out, er = await bash(f"mediainfo {dl.name} --Output=HTML")
     urll = make_html_telegraph("Mediainfo", "Ultroid", out)
-    os.remove(dl.name)
     if er:
         return await ee.edit(f"**[{xx}]({url})**", link_preview=False)
     await ee.edit(
         f"**[{xx}]({url})**\n\n[More Explained Info]({urll})", link_preview=False
     )
-
+    os.remove(dl.name)
 
 HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=HNDLR)}"})
