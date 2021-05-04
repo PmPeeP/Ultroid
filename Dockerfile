@@ -14,7 +14,7 @@ RUN git clone -b dev https://github.com/TeamUltroid/Ultroid.git /root/TeamUltroi
 RUN git clone https://github.com/1Danish-00/glitch_me.git && pip install -e ./glitch_me
 WORKDIR /root/TeamUltroid/
 
-RUN pip install -r requirements.txt
+RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
 RUN npm install -g npm@7.11.1 -g
 RUN npm install -g heroku
 RUN npm install
