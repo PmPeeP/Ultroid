@@ -32,8 +32,8 @@ async def _(e):
         )
 
 
-@owner
 @callback("updtavail")
+@owner
 async def updava(event):
     await event.delete()
     await updater()
