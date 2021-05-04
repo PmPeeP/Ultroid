@@ -59,11 +59,7 @@ async def ult(ult):
                 for y in x:
                     z.append(y)
             cmd = len(z) + 10
-            bn = asst.me.username
-            if bn.startswith("@"):
-                bnn = bn.replace("@", "")
-            else:
-                bnn = bn
+            bnn = asst.me.username
             return await ultroid_bot.send_message(
                 ult.chat_id,
                 get_string("inline_4").format(
