@@ -61,10 +61,10 @@ async def evaluateJs(event):
     start = time.time()
     if not event.out and not is_fullsudo(event.sender_id):
         return await eor(event, "`This Command Is Sudo Restricted.`")
-    if Redis("iAmECMAdev") != "True":
+    if Redis("I_DEV") != "True":
         await eor(
             event,
-            f"Developer Restricted!\nIf you know what this does, and want to proceed\n\n {HNDLR}setredis iAmECMAdev True\n\nThis Might Be Dangerous.",
+            f"Developer Restricted!\nIf you know what this does, and want to proceed\n\n`{HNDLR}setredis I_DEV True`\n\nThis Might Be Dangerous.",
         )
         return
     xx = await eor(event, "`Running Thread ...`")
