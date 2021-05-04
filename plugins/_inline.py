@@ -71,7 +71,7 @@ async def e(o):
         await o.answer(res, switch_pm=f"👥 ULTROID PORTAL", switch_pm_param="start")
 
 
-if Var.BOT_USERNAME is not None and asst is not None:
+if asst.me.username is not None and asst is not None:
 
     @inline
     @in_owner
@@ -85,7 +85,7 @@ if Var.BOT_USERNAME is not None and asst is not None:
                 for y in x:
                     z.append(y)
             cmd = len(z) + 10
-            bn = Var.BOT_USERNAME
+            bn = asst.me.username
             if bn.startswith("@"):
                 bnn = bn.replace("@", "")
             else:
@@ -316,7 +316,7 @@ if Var.BOT_USERNAME is not None and asst is not None:
     @callback("open")
     @owner
     async def opner(event):
-        bn = Var.BOT_USERNAME
+        bn = asst.me.username
         if bn.startswith("@"):
             bnn = bn.replace("@", "")
         else:

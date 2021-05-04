@@ -20,7 +20,7 @@ from . import *
 )
 async def ult(ult):
     plug = ult.pattern_match.group(1)
-    tgbot = Var.BOT_USERNAME
+    tgbot = asst.me.username
     if plug:
         try:
             if plug in HELP:
@@ -60,7 +60,7 @@ async def ult(ult):
                 for y in x:
                     z.append(y)
             cmd = len(z) + 10
-            bn = Var.BOT_USERNAME
+            bn = asst.me.username
             if bn.startswith("@"):
                 bnn = bn.replace("@", "")
             else:

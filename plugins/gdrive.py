@@ -42,7 +42,7 @@ TOKEN_FILE = "resources/auths/auth_token.txt"
 )
 async def files(event):
     if not os.path.exists(TOKEN_FILE):
-        return await eod(event, get_string("gdrive_6").format(Var.BOT_USERNAME))
+        return await eod(event, get_string("gdrive_6").format(asst.me.username))
     http = authorize(TOKEN_FILE, None)
     await eor(event, list_files(http))
 
@@ -53,7 +53,7 @@ async def files(event):
 async def _(event):
     mone = await eor(event, get_string("com_1"))
     if not os.path.exists(TOKEN_FILE):
-        return await eod(mone, get_string("gdrive_6").format(Var.BOT_USERNAME))
+        return await eod(mone, get_string("gdrive_6").format(asst.me.username))
     input_str = event.pattern_match.group(1)
     required_file_name = None
     start = datetime.now()
@@ -118,7 +118,7 @@ async def _(event):
 )
 async def sch(event):
     if not os.path.exists(TOKEN_FILE):
-        return await eod(event, get_string("gdrive_6").format(Var.BOT_USERNAME))
+        return await eod(event, get_string("gdrive_6").format(asst.me.username))
     http = authorize(TOKEN_FILE, None)
     input_str = event.pattern_match.group(1).strip()
     a = await eor(event, f"Searching for {input_str} in G-Drive.")
@@ -141,7 +141,7 @@ async def sch(event):
 )
 async def _(event):
     if not os.path.exists(TOKEN_FILE):
-        return await eod(mone, get_string("gdrive_6").format(Var.BOT_USERNAME))
+        return await eod(mone, get_string("gdrive_6").format(asst.me.username))
     input_str = event.pattern_match.group(1)
     if os.path.isdir(input_str):
         http = authorize(TOKEN_FILE, None)
