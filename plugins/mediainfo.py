@@ -33,7 +33,7 @@ async def mi(e):
     )
     out, er = await bash(f"mediainfo {dl.name} --Output=HTML")
     urll = make_html_telegraph("Mediainfo", "Ultroid", out)
-    os.remove(dl)
+    os.remove(dl.name)
     if er:
         return await ee.edit(f"**[{xx}]({url})**", link_preview=False)
     await ee.edit(
