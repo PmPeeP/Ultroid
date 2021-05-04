@@ -37,4 +37,4 @@ jobs:
 
           commit_user_name: Danish
           commit_user_email: danish@ultroid.tech
-          commit_author: Danish <danish@ultroid.tech>
+          # commit_author: Danish <danish@ultroid.tech>
