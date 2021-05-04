@@ -11,7 +11,7 @@
 • `{i}bash <cmds>`
     Run linux commands on telegram.
 
-• `{i}evalpy <cmds>`
+• `{i}eval <cmds>`
     Evaluate python commands on telegram.
 
 • `{i}circle`
