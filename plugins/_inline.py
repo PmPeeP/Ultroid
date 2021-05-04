@@ -71,8 +71,7 @@ async def e(o):
         await o.answer(res, switch_pm=f"👥 ULTROID PORTAL", switch_pm_param="start")
 
 
-if asst.me.username is not None and asst is not None:
-
+if asst.me is not None:
     @inline
     @in_owner
     async def inline_handler(event):
@@ -85,11 +84,7 @@ if asst.me.username is not None and asst is not None:
                 for y in x:
                     z.append(y)
             cmd = len(z) + 10
-            bn = asst.me.username
-            if bn.startswith("@"):
-                bnn = bn.replace("@", "")
-            else:
-                bnn = bn
+            bnn = asst.me.username
             result = builder.article(
                 title="Help Menu",
                 description="Help Menu - UserBot | Telethon ",
@@ -316,11 +311,7 @@ if asst.me.username is not None and asst is not None:
     @callback("open")
     @owner
     async def opner(event):
-        bn = asst.me.username
-        if bn.startswith("@"):
-            bnn = bn.replace("@", "")
-        else:
-            bnn = bn
+        bnn = asst.me.username
         buttons = [
             [
                 Button.inline("• Pʟᴜɢɪɴs ", data="hrrrr"),
