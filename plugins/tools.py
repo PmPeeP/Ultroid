@@ -311,7 +311,7 @@ async def _(event):
 
 
 @ultroid_cmd(
-    pattern="evalpy",
+    pattern="eval",
 )
 async def _(event):
     if not event.out and not is_fullsudo(event.sender_id):
