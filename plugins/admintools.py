@@ -317,12 +317,12 @@ async def unp(ult):
 async def fastpurger(purg):
     chat = await purg.get_input_chat()
     match = purg.pattern_match.group(1)
-    if match and purg.text[6]==' ':
+    if match and purg.text[6] == " ":
         p = 0
         async for msg in ultroid_bot.iter_messages(purg.chat_id, limit=int(match)):
             await msg.delete()
-            p+=0
-        return await eod(purg, f'Purged {p} Messages! ')
+            p += 0
+        return await eod(purg, f"Purged {p} Messages! ")
     msgs = []
     count = 0
     if not (purg.reply_to_msg_id or match):
@@ -365,8 +365,8 @@ async def fastpurgerme(purg):
             purg.chat_id, limit=nnt, from_user="me"
         ):
             await mm.delete()
-            mp+=1
-        await eod(purg, f'Purged {mp} Messages!')
+            mp += 1
+        await eod(purg, f"Purged {mp} Messages!")
         return
     chat = await purg.get_input_chat()
     msgs = []
