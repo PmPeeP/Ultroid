@@ -47,7 +47,7 @@ async def mi(e):
         )
     else:
         dl.name = await ultroid_bot.download_media(r.media)
-    out, er = await bash(f"mediainfo {dl.name} --Output=HTML")
+    out, er = await bash(f"mediainfo '{dl.name}' --Output=HTML")
     urll = make_html_telegraph("Mediainfo", "Ultroid", out)
     if er:
         return await ee.edit(f"**[{xx}]({url})**", link_preview=False)
