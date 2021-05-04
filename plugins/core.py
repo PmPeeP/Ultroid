@@ -41,41 +41,18 @@ from . import *
 async def inline_handler(event):
     builder = event.builder
     input_str = event.pattern_match.group(1)
-    m = glob.glob("plugins/*")
-    plug = []
-    for t in m:
-        h = t.split("/")
-        if not h[1].startswith("_"):
-            plug.append(t)
-    plugs = []
     if input_str is None or input_str == "":
-        for i in plug:
-            try:
-                plugs.append(
-                    await event.builder.document(
-                        f"{i}",
-                        title=f"{i}.py",
-                        description=f"Module Found",
-                        text=f"{i}.py use below button to paste in neko and raw..",
-                        buttons=[
-                            [
-                                Button.switch_inline(
-                                    "Search Again..?",
-                                    query="send ",
-                                    same_peer=True,
-                                ),
-                            ],
-                            [
-                                Button.inline(
-                                    "Paste?",
-                                    data=f"pasta-{i}",
-                                ),
-                            ],
-                        ],
+        plugs = await event.builder.article(
+            title=f"Which plugin?",
+            text="No Module",
+            buttons=[
+                    Button.switch_inline(
+                    "Search Again..?",
+                    query="send ",
+                    same_peer=True,
                     ),
-                )
-            except BaseException:
-                pass
+                ],
+            )
         await event.answer(plugs)
     else:
         try:
