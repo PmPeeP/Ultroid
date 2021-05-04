@@ -33,6 +33,9 @@
 
 • `{i}tr <dest lang code> <(reply to) a message>`
     Get translated message.
+
+• `{i}sysinfo`
+    Shows System Info.
 """
 
 import asyncio
@@ -41,6 +44,7 @@ import sys
 import time
 import traceback
 from asyncio.exceptions import TimeoutError
+from os import remove
 
 import cv2
 import emoji
@@ -51,6 +55,20 @@ from telethon.utils import pack_bot_file_id
 
 from . import *
 
+from carbonnow import Carbon
+
+@ultroid_cmd(
+pattern="sysinfo$",
+)
+async def _(e):
+    x, y = await bash("neofetch|sed 's/\x1B\[[0-9;\?]*[a-zA-Z]//g' >> neo.txt")
+    with open("neo.txt", "r") as neo:
+        p = (neo.read()).replace('^\n', '')
+    ok = Carbon(code=p)
+    haa = await ok.save("neofetch")
+    await e.client.send_file(e.chat_id, haa)
+    remove("neofetch.jpg")
+    remove("neo.txt")
 
 @ultroid_cmd(
     pattern="tr",
@@ -82,7 +100,7 @@ async def _(event):
 
 
 @ultroid_cmd(
-    pattern="id$",
+    pattern="id ?(.*)",
 )
 async def _(event):
     if event.reply_to_msg_id:
@@ -94,7 +112,7 @@ async def _(event):
                 event,
                 "**Current Chat ID:**  `{}`\n**From User ID:**  `{}`\n**Bot API File ID:**  `{}`".format(
                     str(event.chat_id),
-                    str(r_msg.sender.id),
+                    str(r_msg.sender_id),
                     bot_api_file_id,
                 ),
             )
@@ -103,7 +121,16 @@ async def _(event):
                 event,
                 "**Chat ID:**  `{}`\n**User ID:**  `{}`".format(
                     str(event.chat_id),
-                    str(r_msg.sender.id),
+                    str(r_msg.sender_id),
+                ),
+            )
+    elif event.pattern_match.group(1):
+        ids = await get_user_id(event.pattern_match.group(1))
+        return await eor(
+                event,
+                "**Chat ID:**  `{}`\n**User ID:**  `{}`".format(
+                    str(event.chat_id),
+                    str(ids),
                 ),
             )
     else:
