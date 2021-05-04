@@ -5,6 +5,7 @@
 
 FROM programmingerror/ultroid:v0.0.1
 
+ENV TERM xterm-256color
 RUN mkdir /usr/share/man/man1/
 RUN apt-get install aria2 default-jre -y
 
