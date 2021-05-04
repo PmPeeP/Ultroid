@@ -34,7 +34,7 @@ jobs:
           commit_options: '--no-verify'
 
           repository: .
-          file_pattern: plugins/*.py
+          file_pattern: plugins/*.py assistant/*.py
 
           commit_user_name: Danish
           commit_user_email: danish@ultroid.tech
