@@ -48,6 +48,7 @@ from os import remove
 
 import cv2
 import emoji
+from carbonnow import Carbon
 from googletrans import Translator
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantsBots, User
@@ -55,20 +56,20 @@ from telethon.utils import pack_bot_file_id
 
 from . import *
 
-from carbonnow import Carbon
 
 @ultroid_cmd(
-pattern="sysinfo$",
+    pattern="sysinfo$",
 )
 async def _(e):
-    x, y = await bash("neofetch|sed 's/\x1B\[[0-9;\?]*[a-zA-Z]//g' >> neo.txt")
+    x, y = await bash("neofetch|sed 's/\x1B\\[[0-9;\\?]*[a-zA-Z]//g' >> neo.txt")
     with open("neo.txt", "r") as neo:
-        p = (neo.read()).replace('^\n', '')
+        p = (neo.read()).replace("^\n", "")
     ok = Carbon(code=p)
     haa = await ok.save("neofetch")
     await e.client.send_file(e.chat_id, haa)
     remove("neofetch.jpg")
     remove("neo.txt")
+
 
 @ultroid_cmd(
     pattern="tr",
@@ -127,12 +128,12 @@ async def _(event):
     elif event.pattern_match.group(1):
         ids = await get_user_id(event.pattern_match.group(1))
         return await eor(
-                event,
-                "**Chat ID:**  `{}`\n**User ID:**  `{}`".format(
-                    str(event.chat_id),
-                    str(ids),
-                ),
-            )
+            event,
+            "**Chat ID:**  `{}`\n**User ID:**  `{}`".format(
+                str(event.chat_id),
+                str(ids),
+            ),
+        )
     else:
         await eor(event, "**Current Chat ID:**  `{}`".format(str(event.chat_id)))
 
