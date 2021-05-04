@@ -72,6 +72,7 @@ async def e(o):
 
 
 if asst.me is not None:
+
     @inline
     @in_owner
     async def inline_handler(event):
