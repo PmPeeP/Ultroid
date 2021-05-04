@@ -26,7 +26,6 @@
     Shows you a help menu (like this) for every plugin.
 """
 
-import glob
 import os
 
 from telethon import Button
@@ -46,13 +45,13 @@ async def inline_handler(event):
             title=f"Which plugin?",
             text="No Module",
             buttons=[
-                    Button.switch_inline(
+                Button.switch_inline(
                     "Search Again..?",
                     query="send ",
                     same_peer=True,
-                    ),
-                ],
-            )
+                ),
+            ],
+        )
         await event.answer(plugs)
     else:
         try:
