@@ -32,6 +32,7 @@ async def _(e):
         if x.action:
             await x.delete()
 
+
 @ultroid_cmd(pattern="remclean$")
 async def _(e):
     rem_clean(e.chat_id)
@@ -62,5 +63,6 @@ async def _(event):
             await event.delete()
         except BaseException:
             pass
+
 
 HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=HNDLR)}"})
