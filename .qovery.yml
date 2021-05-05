@@ -1,0 +1,15 @@
+---
+application:
+  name: "catuserbot"
+  project: "BadCat"
+  organization: "QoveryCommunity"
+databases:
+- type: "REDIS"
+  name: "Ultroid"
+  version: "6"
+routers:
+- name: "main-catuserbot"
+  routes:
+  - application_name: "catuserbot"
+    paths:
+    - "/*"
