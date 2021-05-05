@@ -37,7 +37,11 @@ async def _(event):
 async def _(e):
     if e.chat.admin_rights:
         add_clean(e.chat_id)
-        return await eod(e, "Added Clean Action Setting For this Chat")
+        await eod(e, "Added Clean Action Setting For this Chat")
+        async for x in ultroid_bot.iter_messages(e.chat_id, limit=3000):
+            if x.action:
+                await x.delete()
+        return
     return await eod(e, "`ADMIN PERMISSION REQUIRED`")
 
 
