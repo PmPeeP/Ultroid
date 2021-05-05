@@ -24,33 +24,18 @@ from pyUltroid.functions.clean_db import *
 from . import *
 
 
-@ultroid_bot.on(events.ChatAction())
-async def _(event):
-    if is_clean_added(event.chat_id):
-        try:
-            await event.delete()
-        except BaseException:
-            pass
-
-
-@ultroid_cmd(pattern="addclean$")
+@ultroid_cmd(pattern="addclean$", admins_only=True)
 async def _(e):
-    if e.chat.admin_rights:
-        add_clean(e.chat_id)
-        await eod(e, "Added Clean Action Setting For this Chat")
-        async for x in ultroid_bot.iter_messages(e.chat_id, limit=3000):
-            if x.action:
-                await x.delete()
-        return
-    return await eod(e, "`ADMIN PERMISSION REQUIRED`")
-
+    add_clean(e.chat_id)
+    await eod(e, "Added Clean Action Setting For this Chat")
+    async for x in ultroid_bot.iter_messages(e.chat_id, limit=3000):
+        if x.action:
+            await x.delete()
 
 @ultroid_cmd(pattern="remclean$")
 async def _(e):
-    if e.chat.admin_rights:
-        rem_clean(e.chat_id)
-        return await eod(e, "Removed Clean Action Setting For this Chat")
-    return await eod(e, "`ADMIN PERMISSION REQUIRED`")
+    rem_clean(e.chat_id)
+    await eod(e, "Removed Clean Action Setting For this Chat")
 
 
 @ultroid_cmd(pattern="listclean$")
@@ -69,5 +54,13 @@ async def _(e):
     else:
         await eod(e, "`No Chat Added`")
 
+
+@ultroid_bot.on(events.ChatAction())
+async def _(event):
+    if is_clean_added(event.chat_id):
+        try:
+            await event.delete()
+        except BaseException:
+            pass
 
 HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=HNDLR)}"})
